@@ -15,16 +15,17 @@ export class DataService {
 
   getAll() {
     return this.http.get(this.url)
-      .pipe(
-        catchError(this.handleError)
-      );
+        .pipe(
+            catchError(this.handleError)
+        );
   }
 
   create(resource) {
-    return this.http.post(this.url, JSON.stringify(resource))
+    return throwError(new AppError());
+    /*return this.http.post(this.url, JSON.stringify(resource))
     .pipe(
       catchError(this.handleError)
-    );
+    );*/
   }
 
   update(resource, valueChange) {
@@ -35,10 +36,12 @@ export class DataService {
   }
 
   delete(id) {
-    return this.http.delete(this.url + '/' + id)
+    //return throwError(new NotFoundError());
+    return throwError(new AppError());
+    /*return this.http.delete(this.url + '/' + id)
     .pipe(
       catchError(this.handleError)
-    );
+    );*/
   }
 
   private handleError(error: Response) {
